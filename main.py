@@ -42,6 +42,18 @@ if __name__ == "__main__":
     workqueue = ats.workqueue()
 
     # Initialize external systems for automation here..
+    tracking_credential = Credential.get_credential("Odense SQL Server")
+    tracker = Tracker(
+        username=tracking_credential.username, password=tracking_credential.password
+    )
+    momentum_credential = Credential.get_credential("Momentum - produktion")
+    momentum = MomentumClientManager(
+        base_url=momentum_credential.data["base_url"],
+        client_id=momentum_credential.username,
+        client_secret=momentum_credential.password,
+        api_key=momentum_credential.data["api_key"],
+        resource=momentum_credential.data["resource"],
+    )
 
     # Queue management
     if "--queue" in sys.argv:
