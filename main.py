@@ -3,6 +3,13 @@ import logging
 import sys
 
 from automation_server_client import AutomationServer, Workqueue, WorkItemError, Credential
+from momentum_client.manager import MomentumClientManager
+from odk_tools.tracking import Tracker
+
+tracker: Tracker
+momentum: MomentumClientManager
+proces_navn = "Opdatering af kontaktpersoner i Momentum på virksomhedens p-nummer"
+
 
 
 async def populate_queue(workqueue: Workqueue):
